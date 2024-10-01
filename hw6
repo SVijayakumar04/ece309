@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Base class ElectronicDevice
+class ElectronicDevice {
+protected:
+    string brand;
+    string model;
+    bool powerOn;
+
+public:
+    // Constructor
+    ElectronicDevice(string b, string m) : brand(b), model(m), powerOn(false) {}
+
+    // Method to turn the device on
+    void turnOn() {
+        powerOn = true;
+        cout << brand << " " << model << " is now ON." << endl;
+    }
+
+    // Method to turn the device off
+    void turnOff() {
+        powerOn = false;
+        cout << brand << " " << model << " is now OFF." << endl;
+    }
+};
+
+// Derived class Television
+class Television : public ElectronicDevice {
+protected:
+    double screenSize;
+    string resolution;
+
+public:
+    // Constructor for Television
+    Television(string b, string m, double size, string res)
+        : ElectronicDevice(b, m), screenSize(size), resolution(res) {}
+
+    // Method to display TV-specific information
+    void displayInfo() {
+        cout << "Television Info:" << endl;
+        cout << "Brand: " << brand << endl;
+        cout << "Model: " << model << endl;
+        cout << "Screen Size: " << screenSize << " inches" << endl;
+        cout << "Resolution: " << resolution << endl;
+        cout << "Power State: " << (powerOn ? "On" : "Off") << endl;
+    }
+};
+
+int main() {
+    // Create an instance of Television
+    Television myTV("Samsung", "QLED Q80T", 55.0, "4K");
+
+    // Turn on the TV
+    myTV.turnOn();
+
+    // Display TV information
+    myTV.displayInfo();
+
+    // Turn off the TV
+    myTV.turnOff();
+
+    // Display TV information again
+    myTV.displayInfo();
+
+    return 0;
+}
